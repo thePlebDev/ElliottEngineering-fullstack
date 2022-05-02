@@ -18,14 +18,18 @@ public class User {
     @Column
     private String email;
 
+    @Column
+    private String authority;
+
 
     public User() {
     }
 
-    public User(String username, String password, String email){
+    public User(String username, String password, String email,String authority){
         this.username = username;
         this.password = password;
         this.email = email;
+        this.authority = authority;
     }
 
     //GETTERS
@@ -38,9 +42,13 @@ public class User {
     public String getEmail(){
         return this.email;
     }
+    public String getAuthority(){
+        return this.authority;
+    }
     public Long getId(){
         return this.id;
     }
+
 
 
     //SETTERS
@@ -52,5 +60,8 @@ public class User {
     }
     public void setPassword(String password){
         this.password = password;
+    }
+    public void setAuthority(String authority){
+        this.authority = authority;
     }
 }
