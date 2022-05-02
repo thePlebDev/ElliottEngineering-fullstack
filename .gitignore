@@ -19,6 +19,8 @@ src/frontend/frontend/build*
 src/frontend/frontend/.env
 src/frontend/frontend/node/*
 
+src/main/resources/application.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
