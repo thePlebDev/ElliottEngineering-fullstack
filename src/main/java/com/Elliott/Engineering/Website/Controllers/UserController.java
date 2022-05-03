@@ -18,4 +18,20 @@ public class UserController {
         return userService.createUser(user);
     }
 
+
+    @PostMapping("login")
+    public String login(){
+        return "Success";
+    }
+
+    @PostMapping("/testing")
+    public String moreTest(){
+        return "CAN YOU SEE THIS";
+    }
+
+    @PostMapping("/authOnly")
+    public String createTesting(){
+        return "CAN YOU SEE THIS";
+    }
+
 }

@@ -31,7 +31,6 @@ public class UserService {
         User savedUser = userRepository.save(user);
 
         return  " user has been created";
-
     }
 
     private String encode(String rawPassword){
