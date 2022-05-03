@@ -9,7 +9,7 @@ const Container = styled.div`
     background-color:${({theme})=> theme.mainColor};
     z-index:10;
     transition:all 0.25s;
-    right:${({state})=>state ? 0: "-100vw"};
+    right:${({state})=>state ? 0: "-140vw"};
     display:flex;
     flex-direction:column;
     align-items:left;
