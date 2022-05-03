@@ -29,12 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        System.out.println("---------------------");
-        System.out.println("---------------------");
-        System.out.println("IN THE JWT AUTHENTICATION FILTER");
-        System.out.println("---------------------");
-        System.out.println("---------------------");
+        
         String jwt = request.getHeader("Authorization");
 
         SecretKey key = Keys.hmacShaKeyFor(
@@ -63,8 +58,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected  boolean shouldNotFilter(HttpServletRequest request){
         // ! == we do  apply the filter
         String URLPath =request.getServletPath();
-        System.out.println(URLPath);
-        String[] urls = {"/api/v1/users/profile","/api/v1/users/testing","/api/v1/users/authOnly"};
+
+        String[] urls = {"/api/v1/users/profile","/api/v1/users/testing","/api/v1/users/authOnly",};
         boolean indicator = Arrays.stream(urls).anyMatch((i)-> Objects.equals(i, URLPath));
         return !indicator; // should apply filter to this path
     }

@@ -37,11 +37,6 @@ public class InitialAuthenticationFilter extends OncePerRequestFilter {
         String username = request.getHeader("username");
         String password = request.getHeader("password");
 
-        System.out.println("---------------------");
-        System.out.println("---------------------");
-        System.out.println("MADE IT TO THE INITIAL AUTHENTICATION FILTER");
-        System.out.println("---------------------");
-        System.out.println("---------------------");
 
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
         manager.authenticate(auth);//this will delegate to our CustomAuthenticationProvider
