@@ -1,4 +1,4 @@
-import React from "react";
+
 import SupportImage from "../../Resources/supporter.png"
 
 

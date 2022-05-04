@@ -7,6 +7,7 @@ import Signup from "../Signup"
 import Login from "../Login"
 import About from "../About"
 import Products from "../Products"
+import Profile from "../Profile"
 import RoadMap from "../Roadmap"
 
 
@@ -20,6 +21,7 @@ const App =()=>{
                 <Route path="/signup" exact element={<Signup />} />
                 <Route path="/Products" exact element={<Products/>} />
                 <Route path="/roadmap" exact element={<RoadMap/>} />
+                <Route path="/profile" exact element={<Profile/>} />
                 <Route path="/login" exact element={<Login />} />
                 <Route path="/about" exact element={<About />} />
                 <Route path="*" element={<Home />} />
