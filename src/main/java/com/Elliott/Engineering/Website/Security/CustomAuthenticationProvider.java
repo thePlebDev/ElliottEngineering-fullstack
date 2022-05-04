@@ -7,9 +7,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -24,9 +27,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        CustomUserDetails user = userDetailsService.loadUserByUsername(username);
+        try{
+            CustomUserDetails user = userDetailsService.loadUserByUsername(username);
+            return checkPassword(user,password,bCryptPasswordEncoder);
+        } catch (UsernameNotFoundException e) {
 
-        return checkPassword(user,password,bCryptPasswordEncoder);
+            throw new UsernameNotFoundException("Username not found");
+        }
+
     }
 
     @Override
