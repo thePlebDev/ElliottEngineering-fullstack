@@ -36,7 +36,7 @@ const useFormSubmit =(initialState,validate,loadingState)=>{
             
         })
         .catch((error)=>{
-            setStatus({loadingState:formLoadingStates.FAIL,message:"Error please try again"})
+            setStatus({loadingState:formLoadingStates.FAIL,message:error.response.data})
             
         })
         }
