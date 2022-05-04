@@ -13,19 +13,22 @@ const PersonalAccount =()=>{
     const [authenticated, setAuthenticated] = useState(false)
     const [state, setState] = useState("LOADING")
 
-    // useEffect(()=>{
-    //     const authorization = sessionStorage.authorization
-    //     axios.get("/api/v1/user/auth",{headers:{
-    //         "Authorization":authorization
-    //     }})
-    //     .then(function(){
-    //         setAuthenticated(true)
-    //     })
-    //     .catch(function(error){
-    //         setAuthenticated(false)
-    //     })
+    useEffect(()=>{
+        const authorization = localStorage.getItem("authorization")
+        console.log(authorization)
+        axios.get("/api/v1/user/auth",{},{headers:{
+            "Authorization":authorization
+        }})
+        .then(function(){
+            setState("AUTHENTICATED")
+            setAuthenticated(true)
+        })
+        .catch(function(error){
+            setState("NOTAUTHENTICATED")
+            setAuthenticated(false)
+        })
 
-    // },[authenticated,setAuthenticated])
+    },[authenticated,setAuthenticated])
     return(
         <Authenticated state={state}/>
     )
