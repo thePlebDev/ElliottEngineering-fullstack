@@ -1,5 +1,6 @@
 package com.Elliott.Engineering.Website.Security;
 
+import com.Elliott.Engineering.Website.Security.Filters.FilterChainExceptionHandler;
 import com.Elliott.Engineering.Website.Security.Filters.InitialAuthenticationFilter;
 import com.Elliott.Engineering.Website.Security.Filters.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
 
+    @Autowired
+    private FilterChainExceptionHandler filterChainExceptionHandler;
+
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -31,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests().anyRequest().permitAll();
 
+        http.addFilterBefore(filterChainExceptionHandler,BasicAuthenticationFilter.class);
         http.addFilterAt(
                 new InitialAuthenticationFilter(authenticationManager()),
                 BasicAuthenticationFilter.class
