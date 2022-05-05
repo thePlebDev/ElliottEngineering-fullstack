@@ -23,7 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             User user = userRepository.findByUsername(username).orElseThrow(s);
             return new CustomUserDetails(user);
         } catch (UsernameNotFoundException e) {
-            System.out.println("IT IS BEING CAUGHT");
+            System.out.println(e.getMessage());
+
             throw new UsernameNotFoundException("PROBLEM DURING AUTHENTICATION");
 
         }

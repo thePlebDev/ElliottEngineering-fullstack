@@ -29,9 +29,9 @@ public class UserController {
         return "CAN YOU SEE THIS";
     }
 
-    @PostMapping("/authOnly")
+    @PostMapping("/profile")
     public String createTesting(){
-        return "CAN YOU SEE THIS";
+        return "User is authenticated";
     }
 
 }

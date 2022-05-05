@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,7 +17,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGlobalExceptions( Exception exception){
-        return new ResponseEntity<>("There was a problem", HttpStatus.CONFLICT);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
@@ -24,8 +25,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserNameNotFoundException(UsernameNotFoundException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
     }
-
-
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(BadCredentialsException.class)

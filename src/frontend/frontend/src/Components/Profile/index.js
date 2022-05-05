@@ -15,8 +15,8 @@ const PersonalAccount =()=>{
 
     useEffect(()=>{
         const authorization = localStorage.getItem("authorization")
-        console.log(authorization)
-        axios.get("/api/v1/user/auth",{},{headers:{
+        
+        axios.post("/api/v1/users/profile",{},{headers:{
             "Authorization":authorization
         }})
         .then(function(){

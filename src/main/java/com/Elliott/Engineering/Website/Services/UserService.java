@@ -3,6 +3,7 @@ package com.Elliott.Engineering.Website.Services;
 import com.Elliott.Engineering.Website.Models.User;
 import com.Elliott.Engineering.Website.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,14 @@ public class UserService {
     public String createUser(User user){
         String encodedUsername = encode(user.getPassword());
         user.setPassword(encodedUsername);
-        User savedUser = userRepository.save(user);
+        try{
+            User savedUser = userRepository.save(user);
 
-        return  " user has been created";
+            return  " user has been created";
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("Username already exists");
+        }
+
     }
 
     private String encode(String rawPassword){

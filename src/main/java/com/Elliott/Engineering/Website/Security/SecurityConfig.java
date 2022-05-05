@@ -4,6 +4,7 @@ import com.Elliott.Engineering.Website.Security.Filters.FilterChainExceptionHand
 import com.Elliott.Engineering.Website.Security.Filters.InitialAuthenticationFilter;
 import com.Elliott.Engineering.Website.Security.Filters.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,12 +19,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
 
+
     @Autowired
     private FilterChainExceptionHandler filterChainExceptionHandler;
 
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Autowired
+    private InitialAuthenticationFilter initialAuthenticationFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth){
@@ -32,21 +37,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+       // System.out.println("THE String value is -----> " + signingKey);
         http.csrf().disable();
         http.authorizeRequests().anyRequest().permitAll();
 
         http.addFilterBefore(filterChainExceptionHandler,BasicAuthenticationFilter.class);
-        http.addFilterAt(
-                new InitialAuthenticationFilter(authenticationManager()),
+        http.addFilterAt(initialAuthenticationFilter,
                 BasicAuthenticationFilter.class
         );
         http.addFilterAfter(jwtAuthenticationFilter,
                 BasicAuthenticationFilter.class);
     }
 
-    @Override
-    @Bean
-    protected AuthenticationManager authenticationManager() throws Exception{
-        return super.authenticationManager();
-    }
 }
