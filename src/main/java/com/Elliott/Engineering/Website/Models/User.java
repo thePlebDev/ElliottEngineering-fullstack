@@ -1,6 +1,9 @@
 package com.Elliott.Engineering.Website.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity(name = "users")
 public class User {
@@ -8,6 +11,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "users",orphanRemoval = true)
+    private List<Herd> herds = new ArrayList<>();
 
     @Column(unique = true)
     private String username;
@@ -48,6 +54,9 @@ public class User {
     public Long getId(){
         return this.id;
     }
+    public List<Herd> getHerds(){
+        return this.herds;
+    }
 
 
 
@@ -63,5 +72,8 @@ public class User {
     }
     public void setAuthority(String authority){
         this.authority = authority;
+    }
+    public void setHerds(Herd herd){
+        this.herds.add(herd);
     }
 }
