@@ -13,16 +13,14 @@ public class Calf {
     @Column
     private String details;
 
-    @Temporal(TemporalType.DATE)
-    @Column
-    private Date dateBorn;
-
     @Column
     private String tagNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private Cow cow;
+
+    private boolean sex;
 
 
     public Calf(){}
@@ -32,11 +30,11 @@ public class Calf {
         this.cow = cow;
     }
 
-    public Calf(String tagNumber,Cow cow, String details,Date date){
+    public Calf(String tagNumber,Cow cow,String details,boolean sex){
         this.tagNumber = tagNumber;
         this.cow = cow;
         this.details = details;
-        this.dateBorn = date;
+        this.sex = sex;
     }
 
     //GETTERS
@@ -55,8 +53,8 @@ public class Calf {
         return this.cow;
     }
 
-    public Date getDateBorn() {
-        return dateBorn;
+    public Boolean getSex(){
+        return this.sex;
     }
 
     //SETTERS
@@ -68,5 +66,8 @@ public class Calf {
     }
     public void setCow(Cow cow){
         this.cow = cow;
+    }
+    public void setSex(Boolean sex){
+        this.sex = sex;
     }
 }

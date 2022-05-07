@@ -1,5 +1,7 @@
 package com.Elliott.Engineering.Website.Models;
 
+import com.Elliott.Engineering.Website.Models.Types.CowTypes;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,16 @@ public class Cow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private Herd herd;
 
     @OneToMany(mappedBy = "cow",fetch = FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.PERSIST)
     private List<Calf> calfList = new ArrayList<Calf>();
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CowTypes status;
 
     @Column
     private String tagNumber;
@@ -27,21 +33,24 @@ public class Cow {
 
 
     public Cow(){}
-    public Cow(Herd herd,String tagNumber,String details,Calf calf){
+    public Cow(Herd herd,String tagNumber,String details,Calf calf, CowTypes status){
         this.herd = herd;
         this.details = details;
         this.tagNumber = tagNumber;
         this.calfList.add(calf);
+        this.status = status;
     }
 
-    public Cow(Herd herd,String tagNumber,String details){
+    public Cow(Herd herd,String tagNumber,String details, CowTypes status){
         this.herd = herd;
         this.details = details;
         this.tagNumber = tagNumber;
+        this.status = status;
     }
-    public Cow(Herd herd,String tagNumber){
+    public Cow(Herd herd,String tagNumber, CowTypes status){
         this.herd = herd;
         this.tagNumber = tagNumber;
+        this.status = status;
     }
 
     //GETTERS
@@ -60,6 +69,9 @@ public class Cow {
     public String getDetails() {
         return details;
     }
+    public CowTypes getStatus(){
+        return this.status;
+    }
 
     //SETTERS
     public void setHerd(Herd herd){
@@ -73,5 +85,8 @@ public class Cow {
     }
     public void addCalf(Calf calf){
         this.calfList.add(calf);
+    }
+    public void setStatus(CowTypes cowTypes){
+        this.status = status;
     }
 }
