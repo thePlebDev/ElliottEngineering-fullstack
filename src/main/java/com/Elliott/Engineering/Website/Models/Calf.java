@@ -1,5 +1,7 @@
 package com.Elliott.Engineering.Website.Models;
 
+import com.Elliott.Engineering.Website.Models.Types.CalfTypes;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,7 +22,9 @@ public class Calf {
     @JoinColumn
     private Cow cow;
 
-    private boolean sex;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CalfTypes sex;
 
 
     public Calf(){}
@@ -30,7 +34,7 @@ public class Calf {
         this.cow = cow;
     }
 
-    public Calf(String tagNumber,Cow cow,String details,boolean sex){
+    public Calf(String tagNumber, Cow cow, String details, CalfTypes sex){
         this.tagNumber = tagNumber;
         this.cow = cow;
         this.details = details;
@@ -53,7 +57,7 @@ public class Calf {
         return this.cow;
     }
 
-    public Boolean getSex(){
+    public CalfTypes getSex(){
         return this.sex;
     }
 
@@ -67,7 +71,7 @@ public class Calf {
     public void setCow(Cow cow){
         this.cow = cow;
     }
-    public void setSex(Boolean sex){
+    public void setSex(CalfTypes sex){
         this.sex = sex;
     }
 }

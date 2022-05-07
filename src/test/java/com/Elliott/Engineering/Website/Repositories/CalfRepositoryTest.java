@@ -2,6 +2,7 @@ package com.Elliott.Engineering.Website.Repositories;
 
 import com.Elliott.Engineering.Website.Models.Calf;
 import com.Elliott.Engineering.Website.Models.Cow;
+import com.Elliott.Engineering.Website.Models.Types.CalfTypes;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,7 +23,7 @@ public class CalfRepositoryTest {
         //GIVEN
         String EXPECTED_TAGNUMBER = "112dr";
         Cow cow = new Cow();
-        Calf calf = new Calf(EXPECTED_TAGNUMBER,cow,"antoher one",true);
+        Calf calf = new Calf(EXPECTED_TAGNUMBER,cow,"antoher one", CalfTypes.BULL);
 
         //WHEN
         underTest.save(calf);
@@ -38,13 +39,13 @@ public class CalfRepositoryTest {
     @Test
     public void findBySex(){
         //GIVEN
-        boolean EXPECTED_SEX = true;
+        CalfTypes EXPECTED_SEX = CalfTypes.BULL;
         Cow cow = new Cow();
         Calf calf = new Calf("12wdew",cow,"antoher one",EXPECTED_SEX);
 
         //WHEN
         underTest.save(calf);
-        List<Calf> bulls = underTest.findCalfBySex(EXPECTED_SEX).orElseThrow(()-> new IllegalStateException("not found"));
+        List<Calf> bulls = underTest.findCalfBySex(EXPECTED_SEX.toString()).orElseThrow(()-> new IllegalStateException("not found"));
 
         //THEN
         assertThat(bulls.get(0).getSex()).isEqualTo(EXPECTED_SEX);
@@ -55,7 +56,7 @@ public class CalfRepositoryTest {
         //GIVEN
         String EXPECTED_TAG_NUMBER = "DSAF8";
         Cow cow = new Cow();
-        Calf calf = new Calf(EXPECTED_TAG_NUMBER,cow,"antoher one",true);
+        Calf calf = new Calf(EXPECTED_TAG_NUMBER,cow,"antoher one",CalfTypes.BULL);
 
         //WHEN
         Calf savedCalf = underTest.save(calf);
