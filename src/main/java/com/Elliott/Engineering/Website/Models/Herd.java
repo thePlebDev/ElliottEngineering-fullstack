@@ -15,7 +15,7 @@ public class Herd {
     @JoinColumn
     private User users;
 
-    @OneToMany(mappedBy = "herd",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "herd",orphanRemoval = true,cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Cow> cowList = new ArrayList<>();
 
     @Column
