@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import Authenticated from "./authenticated";
+import LoggedIn from "./loggedIn";
 
 
 
@@ -30,7 +31,7 @@ const PersonalAccount =()=>{
 
     },[authenticated,setAuthenticated])
     return(
-        <Authenticated state={state}/>
+        <LoggedIn/>
     )
 }
 
