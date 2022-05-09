@@ -2,7 +2,8 @@ import React,{useEffect, useState,useRef} from "react";
 import styled from "styled-components";
 
 import HerdCard from "./herdCard";
-import CowsNCalves from "./CowsNCalves";
+import CowsNCalves from "./CowsNCalves/CowsNCalves";
+import HerdModal from "./HerdModal";
 
 const Container = styled.div`
     
@@ -14,11 +15,12 @@ const Container = styled.div`
 `
 //at 900 this needs to become absolute
 const AddHerd = styled.div`
-    border:2px solid green;
+    
     width:300px;
     height:82.5vh;
     overflow-y:auto;
     background-color:white;
+    z-index:90;
     @media only screen and (max-width: 900px) {
         position:absolute;
         transition:all 0.25s;
@@ -59,6 +61,7 @@ const Herd = ()=>{
     },[])
     return(
         <Container>
+            <HerdModal/>
             <AddHerd state={clicked} ref={node}>
                 <TabText onClick={()=>setClicked(!clicked)}>Op</TabText>
                 <HerdCard/>

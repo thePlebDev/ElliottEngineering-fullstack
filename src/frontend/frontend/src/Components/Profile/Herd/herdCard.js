@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import HerdForm from "./HerdForm";
+
 const Container = styled.div`
     width:80%;
     
@@ -33,23 +35,22 @@ transition: all 0.25s;
 
 `
 
-
+const herdNames= [{id:0,name:"South Field"},{id:1,name:"Nord Field"}]
 
 const HerdCard = ()=>{
     return(
         <Container>
             
             <h1>HERDS</h1>
+            <HerdForm/>
             
-            <CardContainer>
-                <h1>South Field</h1>
-            </CardContainer>
-            <CardContainer>
-                <h1>West Field</h1>
-            </CardContainer>
-            <CardContainer>
-                <h1>North Field</h1>
-            </CardContainer>
+            {
+                herdNames.map((item)=>{
+                    return (
+                        <CardContainer key={item.id}><h2>{item.name}</h2></CardContainer>
+                    )
+                })
+            }
             
           
         </Container>

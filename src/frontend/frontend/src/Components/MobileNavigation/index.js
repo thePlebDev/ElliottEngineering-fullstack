@@ -7,7 +7,7 @@ const Container = styled.div`
     width:70%;
     position:fixed;
     background-color:${({theme})=> theme.mainColor};
-    z-index:10;
+    z-index:93;
     transition:all 0.25s;
     right:${({state})=>state ? 0: "-140vw"};
     display:flex;
