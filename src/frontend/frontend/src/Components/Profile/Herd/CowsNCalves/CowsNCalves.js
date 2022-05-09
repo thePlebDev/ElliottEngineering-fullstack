@@ -61,13 +61,19 @@ const DetailText = styled.div`
     padding:0 5px;
     font-size: 18px;
 `
-//need to add calves
+const Sex = styled.div`
+    font-size:25px;
+    font-weight:700;
+
+`
+
+
 const cowDeatils = [
     {
         id:0,
         cowTagNumber:"asdf",
         calfTagNumber:"fdsa94",
-        status:"open",
+        sex:"Bull",
         details:"need to sell",
 
         
@@ -76,7 +82,7 @@ const cowDeatils = [
         id:1,
         cowTagNumber:"asdf",
         calfTagNumber:"gjkfkf93",
-        status:"pregnant",
+        sex:"Heifer",
         details:"waiting",
         
     },
@@ -84,7 +90,7 @@ const cowDeatils = [
         id:2,
         cowTagNumber:"asdf",
         calfTagNumber:"fdsa9",
-        status:"calved",
+        sex:"Bull",
         details:"needs more grain",
         
     },
@@ -92,20 +98,42 @@ const cowDeatils = [
         id:3,
         cowTagNumber:"234hg99nvfj",
         calfTagNumber:"fdsa8",
-        status:"calved",
+        sex:"Heifer",
         details:"needs more grain",
 
-    }
-    
-    
+    },
+    ,
+    {
+        id:4,
+        cowTagNumber:"asdf",
+        calfTagNumber:"fdsa9",
+        sex:"Bull",
+        details:"needs more grain",
+        
+    } 
 ]
+const Button = styled.button`
+    outline:none;
+    background: #00a862;
+    border-radius: 500px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 24%), 0 8px 12px rgb(0 0 0 / 14%);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow: hidden;
+    border:none;
+    padding: 5px 10px;
+    width:150px;
+    cursor:pointer;
+`
 
-const CowsNCalves = ()=>{
+const CowsNCalves = ({setShow})=>{
 
     return(
         <Container>
             <h1>Calves</h1>
-            <button>Add Calf</button>
+            <Button onClick={()=>setShow(true)}>Add Calf</Button>
             <GridContainer>
                 {
                     cowDeatils.map((item)=>{
@@ -113,14 +141,16 @@ const CowsNCalves = ()=>{
                             <CardContainer key={item.id}>
                                 <Hr/>
                                 <Title>
-                                    Calf id: {item.calfTagNumber}
+                                    Calf tag: {item.calfTagNumber}
                                 </Title>
                                 
                                 <Title>
-                                    Cow id: {item.cowTagNumber}
+                                    Cow tag: {item.cowTagNumber}
                                 </Title>
                                 <Hr/>
                                 <Status/>
+                                <Hr/>
+                                <Sex>{item.sex}</Sex>
                                 <Hr/>
                                 <DetailText>{item.details}</DetailText>
                                 <Hr/>
