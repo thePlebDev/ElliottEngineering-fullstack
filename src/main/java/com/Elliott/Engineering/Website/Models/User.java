@@ -13,7 +13,7 @@ public class User {
     private Long id;
 
     @OneToMany(mappedBy = "users",orphanRemoval = true)
-    private List<Herd> herds = new ArrayList<>();
+    private List<Calf> herds = new ArrayList<>();
 
     @Column(unique = true)
     private String username;
@@ -54,7 +54,7 @@ public class User {
     public Long getId(){
         return this.id;
     }
-    public List<Herd> getHerds(){
+    public List<Calf> getHerds(){
         return this.herds;
     }
 
@@ -73,7 +73,7 @@ public class User {
     public void setAuthority(String authority){
         this.authority = authority;
     }
-    public void setHerds(Herd herd){
+    public void setHerds(Calf herd){
         this.herds.add(herd);
     }
 }
