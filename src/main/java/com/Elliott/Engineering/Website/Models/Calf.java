@@ -16,11 +16,14 @@ public class Calf {
     private String details;
 
     @Column
-    private String tagNumber;
+    private String calfTagNumber;
+
+    @Column
+    private String cowTagNumber;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
-    private Cow cow;
+    private User users;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -29,14 +32,10 @@ public class Calf {
 
     public Calf(){}
 
-    public Calf(String tagNumber,Cow cow){
-        this.tagNumber = tagNumber;
-        this.cow = cow;
-    }
 
-    public Calf(String tagNumber, Cow cow, String details, CalfTypes sex){
-        this.tagNumber = tagNumber;
-        this.cow = cow;
+    public Calf(String calfTagNumber, String cowTagNumber, String details, CalfTypes sex){
+        this.calfTagNumber = calfTagNumber;
+        this.cowTagNumber = cowTagNumber;
         this.details = details;
         this.sex = sex;
     }
@@ -50,11 +49,14 @@ public class Calf {
         return details;
     }
 
-    public String getTagNumber() {
-        return tagNumber;
+    public String getCalfTagNumber() {
+        return calfTagNumber;
     }
-    public Cow getCow(){
-        return this.cow;
+    public String getCowTagNumber() {
+        return cowTagNumber;
+    }
+    public User getUser(){
+        return this.users;
     }
 
     public CalfTypes getSex(){
@@ -65,11 +67,14 @@ public class Calf {
     public void setDetails(String details){
         this.details = details;
     }
-    public void setTagNumber(String tagNumber){
-        this.tagNumber = tagNumber;
+    public void setCalfTagNumber(String tagNumber){
+        this.calfTagNumber = tagNumber;
     }
-    public void setCow(Cow cow){
-        this.cow = cow;
+    public void setCowTagNumber(String tagNumber){
+        this.cowTagNumber = tagNumber;
+    }
+    public void setUser(User user){
+        this.users = user;
     }
     public void setSex(CalfTypes sex){
         this.sex = sex;
