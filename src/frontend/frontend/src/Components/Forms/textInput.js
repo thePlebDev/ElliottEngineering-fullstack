@@ -23,7 +23,6 @@ font-size:20px;
 focus:true;
 border-color:${({errors})=>errors ? "red" :"rgba(0,0,0,0.7)"};
 
-
 `
 
 
