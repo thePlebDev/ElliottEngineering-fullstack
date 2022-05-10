@@ -1,5 +1,7 @@
 package com.Elliott.Engineering.Website.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +15,7 @@ public class User {
     private Long id;
 
     @OneToMany(mappedBy = "users",orphanRemoval = true)
+    @JsonIgnore
     private List<Calf> herds = new ArrayList<>();
 
     @Column(unique = true)

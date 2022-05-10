@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -62,9 +63,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected  boolean shouldNotFilter(HttpServletRequest request){
         // ! == we do  apply the filter
         String URLPath =request.getServletPath();
+        System.out.println(URLPath);
 
-        String[] urls = {"/api/v1/users/profile","/api/v1/users/testing","/api/v1/users/authOnly",};
-        boolean indicator = Arrays.stream(urls).anyMatch((i)-> Objects.equals(i, URLPath));
+        String[] urls = {"/api/v1/users/profile",
+                "/api/v1/calf/create","/api/v1/calf/getAll", "/api/v1/calf/deleteCalf",
+                "/api/v1/users/authOnly",};
+        boolean indicator = Arrays.asList(urls).contains(URLPath);
+        //Arrays.stream(urls).anyMatch(i-> i.contains(URLPath));
+
         return !indicator; // should apply filter to this path
     }
 

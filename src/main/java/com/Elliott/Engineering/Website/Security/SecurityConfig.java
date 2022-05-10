@@ -39,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
        // System.out.println("THE String value is -----> " + signingKey);
         http.csrf().disable();
-        http.authorizeRequests().anyRequest().permitAll();
 
         http.addFilterBefore(filterChainExceptionHandler,BasicAuthenticationFilter.class);
         http.addFilterAt(initialAuthenticationFilter,
@@ -47,6 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         );
         http.addFilterAfter(jwtAuthenticationFilter,
                 BasicAuthenticationFilter.class);
+        http.authorizeRequests()
+                .anyRequest()
+                .permitAll();
     }
+
 
 }
