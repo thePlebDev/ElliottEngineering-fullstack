@@ -9,18 +9,25 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ * ADD THE UPDATE SECTION
+ * */
 @Repository
 public interface CalfRepository extends JpaRepository<Calf,Long> {
 
 
-    @Query(value = "SELECT * FROM calf WHERE calf.tag_number = ?1",nativeQuery = true)
-    public Optional<Calf> findCalfByTagNumber(String tagNumber);
-
+    @Query(value = "SELECT * FROM calf WHERE calf.calf_tag_number = ?1",nativeQuery = true)
+    public Optional<List<Calf>> findCalfByTagNumber(String tagNumber);
 
     @Query(value = "SELECT * FROM calf WHERE calf.sex = ?1",nativeQuery = true)
     public Optional<List<Calf>> findCalfBySex(String sex);
 
-    @Query(value = "SELECT * FROM calf WHERE calf.cow_id = ?1",nativeQuery = true)
-    public Optional<List<Calf>> findCalfByCowId(Long id);
+    @Query(value = "SELECT * FROM calf WHERE calf.users_id = ?1",nativeQuery = true)
+    public Optional<List<Calf>> findAllCalvesByUserId(Long id);
+
+    @Query(value = "SELECT * FROM calf WHERE calf.cow_tag_number = ?1",nativeQuery = true)
+    public Optional<List<Calf>> findAllCalvesByCowTag(String tagNumber);
+
+
 
 }

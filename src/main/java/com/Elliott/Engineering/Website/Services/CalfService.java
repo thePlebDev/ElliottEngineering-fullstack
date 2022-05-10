@@ -20,8 +20,8 @@ public class CalfService {
         this.calfRepository = calfRepository;
     }
 
-    public Calf findCalfByTagNumber(String tagNumber) throws CalfNotFoundException {
-        Calf calf = this.calfRepository.findCalfByTagNumber(tagNumber).orElseThrow(()-> new CalfNotFoundException("Not Calves Found"));
+    public List<Calf>  findCalfByTagNumber(String tagNumber) throws CalfNotFoundException {
+        List<Calf> calf = this.calfRepository.findCalfByTagNumber(tagNumber).orElseThrow(()-> new CalfNotFoundException("Not Calves Found"));
         return calf;
     }
 
@@ -29,8 +29,5 @@ public class CalfService {
         List<Calf> calfList = this.calfRepository.findCalfBySex(sex.toString()).orElseThrow(()-> new CalfNotFoundException("Not Calves Found"));
         return calfList;
     }
-    public List<Calf> findCalvesByCowId(Long id) throws CalfNotFoundException{
-        List<Calf> calfList = this.calfRepository.findCalfByCowId(id).orElseThrow(()-> new CalfNotFoundException("This Cow has no calves"));
-        return calfList;
-    }
+
 }
