@@ -21,13 +21,25 @@ public class CalfService {
     }
 
     public List<Calf>  findCalfByTagNumber(String tagNumber) throws CalfNotFoundException {
-        List<Calf> calf = this.calfRepository.findCalfByTagNumber(tagNumber).orElseThrow(()-> new CalfNotFoundException("Not Calves Found"));
+        List<Calf> calf = this.calfRepository.findCalfByTagNumber(tagNumber).orElseThrow(()-> new CalfNotFoundException("No Calves Found"));
         return calf;
     }
 
     public List<Calf> findCalvesBySex(CalfTypes sex) throws CalfNotFoundException {
-        List<Calf> calfList = this.calfRepository.findCalfBySex(sex.toString()).orElseThrow(()-> new CalfNotFoundException("Not Calves Found"));
+        List<Calf> calfList = this.calfRepository.findCalfBySex(sex.toString()).orElseThrow(()-> new CalfNotFoundException("No Calves Found"));
         return calfList;
     }
+    public Calf saveCalf(Calf calf){
+        return this.calfRepository.save(calf);
+    }
+    public List<Calf> findAllCalvesByCowTagNumber(String tagNumber) throws CalfNotFoundException {
+        List<Calf> calfList = this.calfRepository.findAllCalvesByCowTag(tagNumber).orElseThrow(()-> new CalfNotFoundException("No Calves Found"));
+        return calfList;
+    }
+    public String deleteCalf(Calf calf){
+        this.calfRepository.delete(calf);
+        return "Calf deleted";
+    }
+    //delete by calf id
 
 }
