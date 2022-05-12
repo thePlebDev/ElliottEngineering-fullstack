@@ -7,6 +7,9 @@ const useCalf = ()=>{
     const [state,setState] = useState({calfTagNumber:"",cowTagNumber:"",weight:"",details:"",sex:""})
     const [errors,setErrors] = useState({})
     const [isSubmitting,setIsSubmitting] = useState(false)
+    const authorization = localStorage.getItem("authorization");
+    const userId = localStorage.getItem("userId");
+    console.log(userId)
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(state)
@@ -22,9 +25,9 @@ const useCalf = ()=>{
         
         if(isSubmitting && Object.keys(errors).length === 0){
 
-            axios.post('/api/v1/calf/create?userId=1',state,{
+            axios.post(`/api/v1/calf/create?userId=${userId}`,state,{
                 headers: {
-                    'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJvYiJ9.o02kj8FxnbS88T5aZpu862XQXvkXzPAfHTJKwP9dfUk'
+                    'Authorization': authorization
                   }
             }).then(response=>{
                 console.log(response.data)

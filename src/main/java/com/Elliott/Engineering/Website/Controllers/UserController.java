@@ -23,6 +23,9 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long userId = userService.getUserId(username);
+        System.out.println(username);
         return "Success";
     }
 
@@ -33,7 +36,8 @@ public class UserController {
 
     @PostMapping("/profile")
     public String createTesting(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName()); //use this to get the id
+        //System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());//use this to get the id
+
         return "User is authenticated";
     }
 

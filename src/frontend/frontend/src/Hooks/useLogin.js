@@ -33,8 +33,12 @@ const useLogin =()=>{
             axios.post("/api/v1/users/login",{},{headers:state})
             .then((response)=>{
                 setStatus({loadingState:formLoadingStates.SUCCESS,message:response.data})
-                const token =response.headers.authorization
-                localStorage.setItem("authorization",token)
+                const jwtToken =response.headers.authorization
+                const userIdToken =response.headers.userid
+                console.log(jwtToken)
+                console.log(userIdToken)
+                localStorage.setItem("authorization",jwtToken)
+                localStorage.setItem("userId",userIdToken)
                 navigate("/profile")
             })
             .catch((error)=>{
