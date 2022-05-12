@@ -1,7 +1,7 @@
 import React,{useEffect, useState,useRef} from "react";
 import styled from "styled-components";
 
-import CowsNCalves from "./CowsNCalves/CowsNCalves";
+import LoadingCalves from "./LoadingCalves";
 import AddCalf from "./CowsNCalves/addCalf";
 
 const Container = styled.div`
@@ -17,11 +17,14 @@ const Container = styled.div`
 
 
 const Herd = ()=>{
-    const [show,setShow] = useState(true)
+    const [show,setShow] = useState(false)
+    const [loading,setLoading] = useState(false)
     return(
         <Container>
+            
            <AddCalf show={show} setShow={setShow}/>
-            <CowsNCalves setShow={setShow}/>
+           
+            <LoadingCalves setShow={setShow}/>
         </Container>
     )
 }

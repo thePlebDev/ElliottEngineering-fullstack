@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import Herd from './Herd';
 
@@ -24,13 +25,18 @@ const SuperContainer =styled.div`
 
 
 const LoggedIn = ()=>{
+    const navigate = useNavigate();
+
+    const handleClick = ()=>{
+        navigate("/calveWeb") //CREATE THE COMPONENT
+    }
     return(
         <SuperContainer>
-            <SearchContainer>
-                <h2>SEARCH BAR</h2>
-            </SearchContainer>
+            
             <Container>
-                <Herd></Herd>
+                <h1>Profile</h1>
+                <h2>Products available to you</h2>
+                <button onClick={(()=>handleClick())}>Calving Tracker Web</button>
                 
             </Container>
          </SuperContainer>

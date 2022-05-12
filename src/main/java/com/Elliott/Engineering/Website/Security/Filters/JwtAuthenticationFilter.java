@@ -63,7 +63,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected  boolean shouldNotFilter(HttpServletRequest request){
         // ! == we do  apply the filter
         String URLPath =request.getServletPath();
-        System.out.println(URLPath);
 
         String[] urls = {"/api/v1/users/profile",
                 "/api/v1/calf/create","/api/v1/calf/getAll", "/api/v1/calf/deleteCalf",

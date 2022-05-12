@@ -3,6 +3,8 @@ package com.Elliott.Engineering.Website.Controllers;
 import com.Elliott.Engineering.Website.Models.User;
 import com.Elliott.Engineering.Website.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +21,7 @@ public class UserController {
     }
 
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(){
         return "Success";
     }
@@ -31,6 +33,7 @@ public class UserController {
 
     @PostMapping("/profile")
     public String createTesting(){
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName()); //use this to get the id
         return "User is authenticated";
     }
 

@@ -8,11 +8,10 @@ import Loading from "./loading"
 
 const Container = styled.div`
     
-    width:80%;
-    margin:2rem auto;
+  
+    
     text-align:center;
 
-    box-shadow: 0 2px 4px rgb(0 0 0 / 7%), 0 4px 5px rgb(0 0 0 / 6%), 0 1px 10px rgb(0 0 0 / 10%);
 `
 
 

@@ -11,6 +11,8 @@ const Container = styled.div`
 const StatusContainer = styled.div`
     display:flex;
     justify-content:space-between;
+    flex-wrap: wrap;
+    overflow:auto;
 
 
 `
@@ -31,12 +33,12 @@ const Text = styled.span`
 `
 
 
-const Status = ()=>{
+const Status = ({weight,born})=>{
     return(
         <Container>
             <StatusContainer>
-                <div>Birth Weight: <Text>900lbs</Text></div>
-                <div>Born: <Text>22/08/24</Text></div>
+                <div> Weight: <Text>{weight}lbs</Text></div>
+                <div>Born: <Text>{born}</Text></div>
             </StatusContainer> 
         </Container>
     )

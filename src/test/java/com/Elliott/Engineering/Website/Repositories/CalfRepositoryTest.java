@@ -30,8 +30,8 @@ public class CalfRepositoryTest {
     public void findAllCalvesByUserId(){
         //GIVEN
         User user = new User("bob","12345","bob@bobmail.com","meat");
-        Calf calf = new Calf("22de","3243d","another one",CalfTypes.BULL);
-        Calf calf1 = new Calf("22de","3243d","another one",CalfTypes.BULL);
+        Calf calf = new Calf("22de","3243d","another one",CalfTypes.BULL,23423);
+        Calf calf1 = new Calf("22de","3243d","another one",CalfTypes.BULL,3243243);
 
         //WHEN
         User savedUser = userRepository.save(user);
@@ -52,7 +52,7 @@ public class CalfRepositoryTest {
     public void findAllCalvesByCowTag(){
         //GIVEN
         String EXPECTED_COW_TAG = "meatball3";
-        Calf calf = new Calf("22de",EXPECTED_COW_TAG,"another one",CalfTypes.BULL);
+        Calf calf = new Calf("22de",EXPECTED_COW_TAG,"another one",CalfTypes.BULL,432432);
 
         //WHEN
         underTest.save(calf);
@@ -66,7 +66,7 @@ public class CalfRepositoryTest {
     public void findCalfByTagNumber(){
         //GIVEN
         String EXPECTED_CALF_TAG = "meatball3";
-        Calf calf = new Calf(EXPECTED_CALF_TAG,"33e4","another one",CalfTypes.BULL);
+        Calf calf = new Calf(EXPECTED_CALF_TAG,"33e4","another one",CalfTypes.BULL,2432432);
 
         //WHEN
         underTest.save(calf);

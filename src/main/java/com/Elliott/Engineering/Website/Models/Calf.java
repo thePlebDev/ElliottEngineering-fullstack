@@ -22,6 +22,13 @@ public class Calf {
     @Column
     private String cowTagNumber;
 
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    @Column
+    private int weight;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private User users;
@@ -34,11 +41,12 @@ public class Calf {
     public Calf(){}
 
 
-    public Calf(String calfTagNumber, String cowTagNumber, String details, CalfTypes sex){
+    public Calf(String calfTagNumber, String cowTagNumber, String details, CalfTypes sex,int weight){
         this.calfTagNumber = calfTagNumber;
         this.cowTagNumber = cowTagNumber;
         this.details = details;
         this.sex = sex;
+        this.weight = weight;
     }
 
     //GETTERS
@@ -63,6 +71,8 @@ public class Calf {
     public CalfTypes getSex(){
         return this.sex;
     }
+    public int getWeight(){return this.weight;}
+    public Date getDate(){return this.date;}
 
     //SETTERS
     public void setDetails(String details){
@@ -80,4 +90,6 @@ public class Calf {
     public void setSex(CalfTypes sex){
         this.sex = sex;
     }
+    public void setWeight(int weight){this.weight = weight;}
+    public void setDate(Date date){this.date = date;}
 }
