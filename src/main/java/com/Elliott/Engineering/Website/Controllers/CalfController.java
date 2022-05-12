@@ -23,7 +23,7 @@ public class CalfController {
     }
 
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public List<Calf> getAllCalves(@RequestParam Long userId) throws CalfNotFoundException {
         List<Calf> calfList = calfService.findAllCalvesByUserId(userId);
         return calfList;

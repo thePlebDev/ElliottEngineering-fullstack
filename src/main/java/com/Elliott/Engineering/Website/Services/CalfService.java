@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,6 +38,7 @@ public class CalfService {
     public Calf saveCalf(Calf calf,Long userId){
         User foundUser = userRepository.findById(userId).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
         calf.setUser(foundUser);
+        calf.setDate(new Date());
         return this.calfRepository.save(calf);
     }
     public List<Calf> findAllCalvesByCowTagNumber(String tagNumber) throws CalfNotFoundException {

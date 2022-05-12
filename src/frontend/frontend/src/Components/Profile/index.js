@@ -20,7 +20,8 @@ const PersonalAccount =()=>{
         axios.post("/api/v1/users/profile",{},{headers:{
             "Authorization":authorization
         }})
-        .then(function(){
+        .then(function(response){
+            console.log(response.data)
             setState("AUTHENTICATED")
             setAuthenticated(true)
         })
@@ -31,7 +32,7 @@ const PersonalAccount =()=>{
 
     },[authenticated,setAuthenticated])
     return(
-        <LoggedIn/>
+        <Authenticated state={state}/>
     )
 }
 

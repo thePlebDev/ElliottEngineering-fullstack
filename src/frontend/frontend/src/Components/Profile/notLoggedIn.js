@@ -2,6 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
+
+const Container = styled.div`
+    width:80%;
+    margin:0 auto;
+    text-align:center;
+
+`
+
 const ThankYou = styled.div`
     font-size:45px;
     margin:15px 0;
@@ -41,24 +50,24 @@ const ButtonContainer = styled.div`
 const NotLoggedIn = ()=>{
 
     return(
-        <>
-        <ThankYou>
-            NOT LOGGED IN
-        </ThankYou>
-        <Body>
-            You are not logged in. Please log in to your account or sign up.
-        </Body>
-        
-        <ButtonContainer>
-            <Link to="/login">
-                <Twitter>Login</Twitter>
-            </Link>
-            <Link to="/signup">
-                <Twitter>Sign up</Twitter>
-            </Link>
+        <Container>
+            <ThankYou>
+                NOT LOGGED IN
+            </ThankYou>
+            <Body>
+                You are not logged in. Please log in to your account or sign up.
+            </Body>
             
-        </ButtonContainer>
-        </>
+            <ButtonContainer>
+                <Link to="/login">
+                    <Twitter>Login</Twitter>
+                </Link>
+                <Link to="/signup">
+                    <Twitter>Sign up</Twitter>
+                </Link>
+                
+            </ButtonContainer>
+        </Container>
     
     )
 }

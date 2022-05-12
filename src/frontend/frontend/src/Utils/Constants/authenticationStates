@@ -1,0 +1,8 @@
+const authenticationStates={
+    LOADING:"LOADING",
+    SUCCESS:"SUCCESSAUTH",
+    FAIL:"FAILAUTH"
+}
+
+
+export default authenticationStates

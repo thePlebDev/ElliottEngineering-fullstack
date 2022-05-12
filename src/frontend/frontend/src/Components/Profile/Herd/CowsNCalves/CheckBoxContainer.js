@@ -7,10 +7,12 @@ const CheckBox = styled.input`
     height:20px;
     width:20px;
     accent-color:${({theme})=>theme.mainColor};
+    
+    
 
 `
 const Container = styled.div`
-    
+
     margin:10px auto;
     width:90%;
     display:flex;
@@ -23,11 +25,12 @@ const Text = styled.label`
     font-size:20px;
     margin-left:5px;
     margin-right:5px;
+    color:${({errors})=> errors ? "red": ""};
 `
 
 
 
-const CheckBoxContainer =({setSharedState,sharedState})=>{
+const CheckBoxContainer =({setSharedState,sharedState,errors})=>{
     const [state,setState] = useState({sex:"Bull"})
 
     const handleClick =(e)=>{
@@ -39,13 +42,13 @@ const CheckBoxContainer =({setSharedState,sharedState})=>{
     return(
         <Container>
             <div>
-                <Text htmlFor="bull">Bull</Text>
-                <CheckBox id="bull" type="radio" name="sex" value="Bull" onChange={(e)=> handleClick(e)}/>
+                <Text htmlFor="bull" errors={errors}>Bull</Text>
+                <CheckBox id="bull" type="radio" name="sex" value="BULL" onChange={(e)=> handleClick(e)}/>
             </div>
                     
             <div>
-                <CheckBox id="heifer" type="radio" name="sex" value="Heifer" onChange={(e)=> handleClick(e)} />
-                <Text htmlFor="heifer">Heifer</Text>
+                <CheckBox id="heifer" type="radio"  name="sex" value="HEIFER" onChange={(e)=> handleClick(e)} />
+                <Text htmlFor="heifer" errors={errors}>Heifer</Text>
             </div>
         </Container>
 

@@ -15,25 +15,23 @@ const GridContainer = styled.div`
     padding:10px;
     display:grid;
     justify-items:center;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `
 
 const CardContainer = styled.div`
     display:flex;
-    
     box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%), 0 0 2px rgb(0 0 0 / 7%);
     border-radius:12px;
-    width:250px;
     
     margin:20px 5px;
     flex-direction:column;
     @media only screen and (min-width: 500px) {
-        width:350px;
+        width:290px;
         
       }
-      @media only screen and (max-width: 900px) {
+      @media only screen and (max-width: 320px) {
+        width:280px;
         
-        height:500px;
       }
 `
 const Title = styled.div`
@@ -68,75 +66,14 @@ const Sex = styled.div`
 `
 
 
-const cowDeatils = [
-    {
-        id:0,
-        cowTagNumber:"asdf",
-        calfTagNumber:"fdsa94",
-        sex:"Bull",
-        details:"need to sell",
 
-        
-    },
-    {
-        id:1,
-        cowTagNumber:"asdf",
-        calfTagNumber:"gjkfkf93",
-        sex:"Heifer",
-        details:"waiting",
-        
-    },
-    {
-        id:2,
-        cowTagNumber:"asdf",
-        calfTagNumber:"fdsa9",
-        sex:"Bull",
-        details:"needs more grain",
-        
-    },
-    {
-        id:3,
-        cowTagNumber:"234hg99nvfj",
-        calfTagNumber:"fdsa8",
-        sex:"Heifer",
-        details:"needs more grain",
-
-    },
-    ,
-    {
-        id:4,
-        cowTagNumber:"asdf",
-        calfTagNumber:"fdsa9",
-        sex:"Bull",
-        details:"needs more grain",
-        
-    } 
-]
-const Button = styled.button`
-    outline:none;
-    background: #00a862;
-    border-radius: 500px;
-    box-shadow: 0 0 6px rgb(0 0 0 / 24%), 0 8px 12px rgb(0 0 0 / 14%);
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    overflow: hidden;
-    border:none;
-    padding: 5px 10px;
-    width:150px;
-    cursor:pointer;
-`
-
-const CowsNCalves = ({setShow})=>{
+const CowsNCalves = ({data})=>{
 
     return(
         <Container>
-            <h1>Calves</h1>
-            <Button onClick={()=>setShow(true)}>Add Calf</Button>
             <GridContainer>
                 {
-                    cowDeatils.map((item)=>{
+                    data.map((item)=>{
                         return(
                             <CardContainer key={item.id}>
                                 <Hr/>
@@ -148,7 +85,7 @@ const CowsNCalves = ({setShow})=>{
                                     Cow tag: {item.cowTagNumber}
                                 </Title>
                                 <Hr/>
-                                <Status/>
+                                <Status weight={item.weight} born={item.date}/>
                                 <Hr/>
                                 <Sex>{item.sex}</Sex>
                                 <Hr/>

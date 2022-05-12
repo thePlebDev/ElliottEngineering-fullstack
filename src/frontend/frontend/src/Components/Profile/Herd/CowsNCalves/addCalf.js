@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 
 import CheckBoxContainer from "./CheckBoxContainer"
+import useCalf from "../../../../Hooks/useCalf";
 
 const Container = styled.div`
     height:100%;
@@ -24,7 +25,8 @@ const SubContainer = styled.div`
 `
 const Input = styled.input`
 border-radius: 8px;
-border:1px solid rgba(0,0,0,0.6);
+
+border:${({errors})=>errors ? "2px solid red" :"1px solid rgba(0,0,0,0.6)"};
 outline:none;
 padding: 12px 16px;
 width:90%;
@@ -33,7 +35,7 @@ margin-top:5px;
 margin-bottom:10px;
 font-size:20px;
 focus:true;
-border-color:${({errors})=>errors ? "red" :"rgba(0,0,0,0.7)"};
+
 
 `
 const Button = styled.button`
@@ -71,25 +73,19 @@ const ButtonContainer = styled.div`
 
 
 const AddCalf = ({show,setShow})=>{
-    const [state,setState] = useState({calfTag:"",cowTag:"",weight:"",details:"",sex:""})
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        console.log(state)
-    }
-    const handleChange =(e)=>{
-        const {name,value} = e.target;
-        setState({...state,[name]:value})
-    }
+    const {state,errors,setState,handleChange,handleSubmit} = useCalf()
+   
 
     return(
         <Container state={show}>
             <SubContainer>
             <h1>Add Calf</h1>
+            
             <form onSubmit={(e)=> handleSubmit(e)}>
-                <Input placeholder="Calf tag number" type="text" onChange={(e)=> handleChange(e)} value={state.calfTag} name="calfTag"/>
-                <Input placeholder="Cow tag number" type="text" onChange={(e)=> handleChange(e)} value={state.cowTag} name="cowTag"/>
-                <Input placeholder="Birth weight /lbs" type="number" onChange={(e)=> handleChange(e)} value={state.weight} name="weight"/>
-                <CheckBoxContainer setSharedState={setState} sharedState={state}/>
+                <Input placeholder="Calf tag number" errors={errors.calfTagNumber} type="text" onChange={(e)=> handleChange(e)} value={state.calfTagNumber} name="calfTagNumber"/>
+                <Input placeholder="Cow tag number" errors={errors.cowTagNumber} type="text" onChange={(e)=> handleChange(e)} value={state.cowTagNumber} name="cowTagNumber"/>
+                <Input placeholder="Birth weight /lbs" errors={errors.weight} type="number" onChange={(e)=> handleChange(e)} value={state.weight} name="weight"/>
+                <CheckBoxContainer setSharedState={setState} sharedState={state} errors={errors.sex}/>
                 
                 <Input placeholder="Details" onChange={(e)=> handleChange(e)} value={state.details} name="details"/>
                 <ButtonContainer>

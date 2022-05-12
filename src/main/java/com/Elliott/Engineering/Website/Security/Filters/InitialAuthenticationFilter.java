@@ -71,7 +71,6 @@ public class InitialAuthenticationFilter extends OncePerRequestFilter {
                 .compact();
         response.setHeader("Authorization",jwt);
 
-        System.out.println(jwt);
         filterChain.doFilter(request,response);
     }
 
