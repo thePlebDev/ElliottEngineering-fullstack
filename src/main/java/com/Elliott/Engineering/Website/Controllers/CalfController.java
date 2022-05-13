@@ -4,6 +4,8 @@ import com.Elliott.Engineering.Website.Exceptions.CalfNotFoundException;
 import com.Elliott.Engineering.Website.Models.Calf;
 import com.Elliott.Engineering.Website.Services.CalfService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +35,12 @@ public class CalfController {
     public String deleteCalf(@RequestParam Long calfId){
         String deletedCalf = calfService.deleteCalf(calfId);
         return deletedCalf;
+    }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public String greeting(String message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return message;
     }
 }
