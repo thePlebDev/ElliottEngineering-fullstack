@@ -92,8 +92,6 @@ public class InitialAuthenticationFilter extends OncePerRequestFilter {
     }
     private Long findUserId(String username){
         User foundUser = userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Username not found"));
-        System.out.println("-----------------BELOW--------------");
-        System.out.println(foundUser.getId().toString());
         return foundUser.getId();
     }
 }
