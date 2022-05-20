@@ -1,5 +1,6 @@
 package com.Elliott.Engineering.Website.ExceptionHandlers;
 
+import com.Elliott.Engineering.Website.Exceptions.BlogPostNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,12 +18,18 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGlobalExceptions( Exception exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+
+        return new ResponseEntity<>("There was a problem", HttpStatus.CONFLICT);
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<String> handleUserNameNotFoundException(UsernameNotFoundException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
+    }
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(BlogPostNotFound.class)
+    public ResponseEntity<String> handleBlogPostNotFoundException(UsernameNotFoundException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
     }
 

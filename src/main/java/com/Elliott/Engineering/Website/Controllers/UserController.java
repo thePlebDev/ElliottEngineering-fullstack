@@ -7,6 +7,10 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller used to handle all the user interactions
+ *
+ * */
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
@@ -15,30 +19,14 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/signup")
-    public String createUser(@RequestBody User user){
-        return userService.createUser(user);
-    }
-
-
     @PostMapping("/login")
     public String login(){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Long userId = userService.getUserId(username);
-        System.out.println(username);
         return "Success";
     }
 
-    @PostMapping("/testing")
-    public String moreTest(){
-        return "CAN YOU SEE THIS";
-    }
-
-    @PostMapping("/profile")
-    public String createTesting(){
-        //System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());//use this to get the id
-
-        return "User is authenticated";
+    @PostMapping("/authOnly")
+    public String authenticate(){
+        return "Success";
     }
 
 }
