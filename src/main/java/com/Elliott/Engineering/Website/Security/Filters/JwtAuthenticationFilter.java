@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -23,6 +24,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -33,8 +36,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        
-        String jwt = request.getHeader("Authorization");
+        Supplier<UsernameNotFoundException> s = () -> new UsernameNotFoundException("PROBLEM DURING AUTHENTICATION");
+        String jwt = Optional.of(request.getHeader("Authorization")).orElseThrow(s);
+        //String jwt = request.getHeader("Authorization");
 
 
         SecretKey key = Keys.hmacShaKeyFor(
@@ -63,10 +67,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected  boolean shouldNotFilter(HttpServletRequest request){
         // ! == we do  apply the filter
         String URLPath =request.getServletPath();
-
-        String[] urls = {"/api/v1/users/profile",
-                "/api/v1/calf/create","/api/v1/calf/getAll", "/api/v1/calf/deleteCalf",
-                "/api/v1/users/authOnly",};
+        System.out.println(URLPath);
+        String[] urls = {"/api/v1/blog/save-post","/api/v1/users/authOnly"};
         boolean indicator = Arrays.asList(urls).contains(URLPath);
         //Arrays.stream(urls).anyMatch(i-> i.contains(URLPath));
 

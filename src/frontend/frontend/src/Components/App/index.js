@@ -10,6 +10,7 @@ import Products from "../Products"
 import Profile from "../Profile"
 import RoadMap from "../Roadmap"
 import CalvingTrackerWeb from "../CalvingTrackerWeb"
+import TestingSocket from "../TestingSocket"
 
 
 
@@ -26,6 +27,7 @@ const App =()=>{
                 <Route path="/calveWeb" exact element={<CalvingTrackerWeb/>} />
                 <Route path="/login" exact element={<Login />} />
                 <Route path="/about" exact element={<About />} />
+                <Route path="/testing" exact element={<TestingSocket/>} />
                 <Route path="*" element={<Home />} />
             </Routes>
         </>

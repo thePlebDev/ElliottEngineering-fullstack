@@ -9,7 +9,6 @@ const useCalf = ()=>{
     const [isSubmitting,setIsSubmitting] = useState(false)
     const authorization = localStorage.getItem("authorization");
     const userId = localStorage.getItem("userId");
-    console.log(userId)
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(state)
