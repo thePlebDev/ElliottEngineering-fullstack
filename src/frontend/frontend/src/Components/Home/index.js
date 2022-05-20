@@ -1,7 +1,6 @@
 import React from "react";
 import styled,{keyframes} from "styled-components";
 import { Link } from "react-router-dom";
-import HomeImage from '../../Resources/HomePageImage.png'
 
 const Container = styled.div`
     width:80%;
@@ -153,15 +152,7 @@ const Home =()=>{
 
     return(
         <Container>
-            <TitleText>Elliott Engineering</TitleText>
-            <Image src={HomeImage} />  
-            <TextContainer>
-            <Text1>Old Problems</Text1>
-            <Text2>New Solutions</Text2>
-            <Link to="/about">
-              <Text3>Learn more</Text3>
-            </Link>
-            </TextContainer>
+           <h1>THIS IS THE HOME NOW</h1>
         </Container>
 
     )
