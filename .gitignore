@@ -20,7 +20,7 @@ src/frontend/frontend/.env
 src/frontend/frontend/node/*
 
 src/main/resources/application.properties
-src/main/java/com.Elliott.Engineering.Website/Security/AdminUser.java
+
 
 ### IntelliJ IDEA ###
 .idea
@@ -40,3 +40,4 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/main/java/com/Elliott/Engineering/Website/Security/AdminUser.java
