@@ -14,7 +14,7 @@ public class AdminUser implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user = new User("AdminTristan","J725Z-08942Fetch!","",null);
+        User user = new User("","","",null);
         userService.createUser(user);
 
     }
